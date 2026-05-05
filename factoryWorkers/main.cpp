@@ -5,6 +5,7 @@
 #include "Employee.h"
 #include "ProductionWorker.h"
 #include "ShiftSupervisor.h"
+#include "TeamLeader.h"
 using namespace std;
 
 int main() {
@@ -57,6 +58,17 @@ int main() {
 
     // Print supervisor information
     supervisor1.printShiftSupervisor();
+
+    // TeamLeader test
+    cout << endl;
+    cout << "----- TeamLeader Test -----" << endl;
+
+    // Object for team leader
+    TeamLeader leader1("David Wilson", 4001, "11/01/2018", 1, 22.50,
+        1000.00, 40, 35);
+
+    // Print team leader information
+    leader1.printTeamLeader();
 
     return 0;
 }
