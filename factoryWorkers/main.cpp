@@ -4,6 +4,7 @@
 #include <iostream>
 #include "Employee.h"
 #include "ProductionWorker.h"
+#include "ShiftSupervisor.h"
 using namespace std;
 
 int main() {
@@ -46,6 +47,16 @@ int main() {
     worker1.printProductionWorker();
     cout << endl;
     worker2.printProductionWorker();
+
+    // ShiftSupervisor test
+    cout << endl;
+    cout << "----- ShiftSupervisor Test -----" << endl;
+
+    // Object for shift supervisor
+    ShiftSupervisor supervisor1("Karen Davis", 3001, "08/12/2019", 65000.00, 5000.00);
+
+    // Print supervisor information
+    supervisor1.printShiftSupervisor();
 
     return 0;
 }

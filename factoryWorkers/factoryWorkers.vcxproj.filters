@@ -24,12 +24,18 @@
     <ClCompile Include="ProductionWorker.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ShiftSupervisor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Employee.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ProductionWorker.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ShiftSupervisor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
