@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "Employee.h"
+#include "ProductionWorker.h"
 using namespace std;
 
 int main() {
@@ -30,6 +31,21 @@ int main() {
     employee1.setHireDate("03/20/2023");
 
     employee1.printEmployee();
+
+    // ProductionWorker test
+    cout << endl;
+    cout << "----- ProductionWorker Test -----" << endl;
+
+    // Object for day shift worker
+    ProductionWorker worker1("Alice Johnson", 2001, "02/10/2021", 1, 18.50);
+
+    // Object for night shift worker
+    ProductionWorker worker2("Bob Lee", 2002, "06/05/2020", 2, 20.75);
+
+    // Print both workers
+    worker1.printProductionWorker();
+    cout << endl;
+    worker2.printProductionWorker();
 
     return 0;
 }
