@@ -5,12 +5,13 @@
 #include "ProductionWorker.h"
 using namespace std;
 
-// Constructor using initializer list (IMPORTANT)
+// Constructor using initializer list
 ProductionWorker::ProductionWorker(string n, int number, string date, int s, double pay)
-    : Employee(n, number, date)   // calls base class constructor
+    : Employee(n, number, date)
 {
-    shift = s;
-    hourlyPayRate = pay;
+    // Uses setters so constructor also validates these values
+    setShift(s);
+    setHourlyPayRate(pay);
 }
 
 int ProductionWorker::getShift() const {
@@ -22,15 +23,24 @@ double ProductionWorker::getHourlyPayRate() const {
 }
 
 void ProductionWorker::setShift(int s) {
+    // Shift must be 1 for day or 2 for night
+    if (s != 1 && s != 2) {
+        throw InvalidShift();
+    }
+
     shift = s;
 }
 
 void ProductionWorker::setHourlyPayRate(double pay) {
+    // Pay rate cannot be negative
+    if (pay < 0) {
+        throw InvalidPayRate();
+    }
+
     hourlyPayRate = pay;
 }
 
 void ProductionWorker::printProductionWorker() const {
-    // Call base class function FIRST (VERY IMPORTANT)
     printEmployee();
 
     cout << "Shift: " << (shift == 1 ? "Day" : "Night") << endl;
