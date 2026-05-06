@@ -14,35 +14,23 @@ private:
     string hireDate;
 
 public:
+    // Exception class for invalid employee numbers
+    class InvalidEmployeeNumber {};
+
     // Constructor
     Employee(string n = "", int number = 0, string date = "");
 
-    // Preconditions: none
-    // Postconditions: returns the employee name
+    // Getters
     string getName() const;
-
-    // Preconditions: none
-    // Postconditions: returns the employee number
     int getEmployeeNumber() const;
-
-    // Preconditions: none
-    // Postconditions: returns the hire date
     string getHireDate() const;
 
-    // Preconditions: n should contain a valid employee name
-    // Postconditions: updates the employee name
+    // Setters
     void setName(string n);
-
-    // Preconditions: number should contain a valid employee number
-    // Postconditions: updates the employee number
     void setEmployeeNumber(int number);
-
-    // Preconditions: date should contain a valid hire date
-    // Postconditions: updates the hire date
     void setHireDate(string date);
 
-    // Preconditions: Employee object must contain valid data
-    // Postconditions: prints all employee information
+    // Print employee info
     void printEmployee() const;
 };
 

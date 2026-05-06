@@ -7,8 +7,10 @@ using namespace std;
 
 Employee::Employee(string n, int number, string date) {
     name = n;
-    employeeNumber = number;
     hireDate = date;
+
+    // Uses setter so constructor also validates the employee number
+    setEmployeeNumber(number);
 }
 
 string Employee::getName() const {
@@ -28,6 +30,11 @@ void Employee::setName(string n) {
 }
 
 void Employee::setEmployeeNumber(int number) {
+    // Employee number must be between 0 and 9999
+    if (number < 0 || number > 9999) {
+        throw InvalidEmployeeNumber();
+    }
+
     employeeNumber = number;
 }
 
@@ -35,7 +42,6 @@ void Employee::setHireDate(string date) {
     hireDate = date;
 }
 
-// Prints employee info
 void Employee::printEmployee() const {
     cout << "Name: " << name << endl;
     cout << "Employee Number: " << employeeNumber << endl;
