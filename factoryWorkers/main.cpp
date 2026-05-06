@@ -1,108 +1,127 @@
 // main.cpp
-// This program tests exceptions for the Factory Workers program
+// Menu-driven program for Factory Workers with exceptions
 
 #include <iostream>
+#include <string>
+#include <limits>
 #include "Employee.h"
 #include "ProductionWorker.h"
 using namespace std;
 
 int main() {
+    int choice;
 
-    // Employee test
-    //
-    cout << "----- Employee Invalid Number Test -----" << endl;
+    do {
+        cout << endl;
+        cout << "----- Factory Workers Menu -----" << endl;
+        cout << "1. Enter Production Worker" << endl;
+        cout << "2. Exit" << endl;
+        cout << "Enter choice: ";
+        cin >> choice;
 
-    try {
-        Employee employee1("John Smith", 10000, "01/15/2022");
-        employee1.printEmployee();
-    }
-    catch (Employee::InvalidEmployeeNumber) {
-        cout << "Error: Invalid employee number. Number must be between 0 and 9999." << endl;
-    }
+        // Checks if menu input failed
+        if (cin.fail()) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-    cout << endl;
-    cout << "----- Employee Valid Test -----" << endl;
+            cout << "Error: Menu choice must be a number." << endl;
+            continue;
+        }
 
-    try {
-        Employee employee2("Maria Lopez", 1002, "03/20/2023");
-        employee2.printEmployee();
-    }
-    catch (Employee::InvalidEmployeeNumber) {
-        cout << "Error: Invalid employee number. Number must be between 0 and 9999." << endl;
-    }
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
+        if (choice == 1) {
+            string name;
+            string hireDate;
+            int employeeNumber;
+            int shift;
+            double payRate;
 
-    // Production worker shift test
-    //
-    cout << endl << endl;
-    cout << "----- ProductionWorker Invalid Shift Test -----" << endl;
+            bool valid = false;
 
-    try {
-        ProductionWorker worker1("Alice Johnson", 2001, "02/10/2021", 3, 18.50);
-        worker1.printProductionWorker();
-    }
-    catch (Employee::InvalidEmployeeNumber) {
-        cout << "Error: Invalid employee number. Number must be between 0 and 9999." << endl;
-    }
-    catch (ProductionWorker::InvalidShift) {
-        cout << "Error: Invalid shift. Shift must be 1 for day or 2 for night." << endl;
-    }
-    catch (ProductionWorker::InvalidPayRate) {
-        cout << "Error: Invalid pay rate. Pay rate cannot be negative." << endl;
-    }
+            while (!valid) {
+                try {
+                    cout << endl;
 
-    cout << endl;
-    cout << "----- ProductionWorker Valid Shift Test -----" << endl;
+                    cout << "Enter employee name: ";
+                    getline(cin, name);
 
-    try {
-        ProductionWorker worker2("Alice Johnson", 2001, "02/10/2021", 1, 18.50);
-        worker2.printProductionWorker();
-    }
-    catch (Employee::InvalidEmployeeNumber) {
-        cout << "Error: Invalid employee number. Number must be between 0 and 9999." << endl;
-    }
-    catch (ProductionWorker::InvalidShift) {
-        cout << "Error: Invalid shift. Shift must be 1 for day or 2 for night." << endl;
-    }
-    catch (ProductionWorker::InvalidPayRate) {
-        cout << "Error: Invalid pay rate. Pay rate cannot be negative." << endl;
-    }
+                    cout << "Enter employee number: ";
+                    cin >> employeeNumber;
 
-    // Production worker pay test
-    //
-    cout << endl << endl;
-    cout << "----- ProductionWorker Invalid Pay Test -----" << endl;
+                    // Checks if employee number input failed
+                    if (cin.fail()) {
+                        cin.clear();
+                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-    try {
-        ProductionWorker worker3("Bob Lee", 2002, "06/05/2020", 2, -20.75);
-        worker3.printProductionWorker();
-    }
-    catch (Employee::InvalidEmployeeNumber) {
-        cout << "Error: Invalid employee number. Number must be between 0 and 9999." << endl;
-    }
-    catch (ProductionWorker::InvalidShift) {
-        cout << "Error: Invalid shift. Shift must be 1 for day or 2 for night." << endl;
-    }
-    catch (ProductionWorker::InvalidPayRate) {
-        cout << "Error: Invalid pay rate. Pay rate cannot be negative." << endl;
-    }
+                        cout << "Error: Employee number must be a number." << endl;
+                        cout << "Please re-enter the record." << endl;
+                        continue;
+                    }
 
-    cout << endl;
-    cout << "----- ProductionWorker Valid Pay Test -----" << endl;
+                    cout << "Enter hire date: ";
+                    cin >> hireDate;
 
-    try {
-        ProductionWorker worker4("Bob Lee", 2002, "06/05/2020", 2, 20.75);
-        worker4.printProductionWorker();
-    }
-    catch (Employee::InvalidEmployeeNumber) {
-        cout << "Error: Invalid employee number. Number must be between 0 and 9999." << endl;
-    }
-    catch (ProductionWorker::InvalidShift) {
-        cout << "Error: Invalid shift. Shift must be 1 for day or 2 for night." << endl;
-    }
-    catch (ProductionWorker::InvalidPayRate) {
-        cout << "Error: Invalid pay rate. Pay rate cannot be negative." << endl;
-    }
+                    cout << "Enter shift, 1 for day or 2 for night: ";
+                    cin >> shift;
+
+                    // Checks if shift input failed
+                    if (cin.fail()) {
+                        cin.clear();
+                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+                        cout << "Error: Shift must be a number." << endl;
+                        cout << "Please re-enter the record." << endl;
+                        continue;
+                    }
+
+                    cout << "Enter hourly pay rate: ";
+                    cin >> payRate;
+
+                    // Checks if pay rate input failed
+                    if (cin.fail()) {
+                        cin.clear();
+                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+                        cout << "Error: Pay rate must be a number." << endl;
+                        cout << "Please re-enter the record." << endl;
+                        continue;
+                    }
+
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+                    // Creates ProductionWorker object
+                    ProductionWorker worker(name, employeeNumber, hireDate, shift, payRate);
+
+                    cout << endl;
+                    cout << "----- Valid Production Worker Record -----" << endl;
+
+                    worker.printProductionWorker();
+
+                    valid = true;
+                }
+                catch (Employee::InvalidEmployeeNumber) {
+                    cout << "Error: Invalid employee number. Number must be between 0 and 9999." << endl;
+                    cout << "Please re-enter the record." << endl;
+                }
+                catch (ProductionWorker::InvalidShift) {
+                    cout << "Error: Invalid shift. Shift must be 1 for day or 2 for night." << endl;
+                    cout << "Please re-enter the record." << endl;
+                }
+                catch (ProductionWorker::InvalidPayRate) {
+                    cout << "Error: Invalid pay rate. Pay rate cannot be negative." << endl;
+                    cout << "Please re-enter the record." << endl;
+                }
+            }
+        }
+        else if (choice == 2) {
+            cout << "Exiting program." << endl;
+        }
+        else {
+            cout << "Error: Invalid menu choice." << endl;
+        }
+
+    } while (choice != 2);
 
     return 0;
 }
